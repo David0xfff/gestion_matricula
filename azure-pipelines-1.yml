@@ -1,0 +1,19 @@
+trigger:
+- main  # Configura la rama que activará el pipeline
+
+pool:
+  vmImage: 'ubuntu-latest'  # Usa un agente de Ubuntu
+
+steps:
+- task: UsePythonVersion@1  # Instala Python
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+
+- script: |
+    python --version  # Verifica la versión de Python
+    pip install pytest  # Instala pytest para pruebas
+    echo "Ejecutando el archivo Python"
+    python sistema_matriculas.py  # Ejecuta el script principal
+  displayName: "Ejecutar script y verificar funcionamiento"
+
