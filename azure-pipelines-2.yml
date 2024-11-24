@@ -1,0 +1,17 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+
+- script: |
+    python --version
+    pip install pytest
+    pytest test_sistema_matriculas.py
+  displayName: "Ejecutar pruebas automáticas"
